@@ -1,4 +1,19 @@
-<p>
-    <a href="/edit/{{ trade.id }}">Edit</a> |
-    <a href="/delete/{{ trade.id }}">Delete</a>
-</p>
+{% if trades %}
+    {% for trade in trades %}
+        <hr>
+        <h3>Trade {{ loop.index }}</h3>
+
+        <p><strong>Representative:</strong> {{ trade.representative }}</p>
+        <p><strong>Trade Date:</strong> {{ trade.trade_date }}</p>
+        <p><strong>Ticker:</strong> {{ trade.ticker }}</p>
+
+        <!-- ✅ THIS IS THE CORRECT PLACE -->
+        <p>
+            <a href="/edit/{{ trade.id }}">Edit</a> |
+            <a href="/delete/{{ trade.id }}">Delete</a>
+        </p>
+
+    {% endfor %}
+{% else %}
+    <p>No trades have been added yet.</p>
+{% endif %}
